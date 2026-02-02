@@ -1,0 +1,24 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Иван Иванов
+N:Иванов;Иван;;;
+TEL;TYPE=CELL:+79161234567
+EMAIL:ivan@mail.ru
+ORG:Компания А
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Мария Сидорова
+N:Сидорова;Мария;;;
+TEL;TYPE=CELL:89167778899
+EMAIL:maria@ya.ru
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Анна Аннова
+N:Аннова;Анна;;;
+TEL;TYPE=CELL:+79160001122
+END:VCARD
+
