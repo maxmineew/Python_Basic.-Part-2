@@ -1,0 +1,115 @@
+# Задача 1. Машина 2
+#
+# Модернизируйте класс Toyota из прошлого видео. Атрибуты остаются такими же:
+#
+# цвет машины (например, красный),
+# цена (один миллион),
+# максимальная скорость (200),
+# текущая скорость (ноль).
+#
+#
+# Добавьте два метода класса:
+#
+# Отображение информации об объекте класса.
+# Метод, который позволяет устанавливать текущую скорость машины.
+# Проверьте работу этих методов.
+#
+#
+#
+
+class Toyota:
+    color = 'red'
+    price = 1e6
+    max_speed = 200
+    current_speed = 0
+
+    def check_info(self):
+        print(self.color, self.price, self.max_speed, self.current_speed)
+
+    def change_speed(self, new_speed):
+        self.current_speed = new_speed
+
+
+car = Toyota()
+car.check_info()
+car.change_speed(100)
+car.check_info()
+print(Toyota.current_speed)  # обратите внимание, что скорость внутри Класса осталась той же, её изменения не коснулись
+
+
+# Задача 2. Семья
+#
+# Реализуйте класс «Семья», который состоит из атрибутов «Имя»,
+# Деньги» и «Наличие дома» и объекты которого могут выполнять следующие действия:
+#
+# Отобразить информацию о себе.
+# Заработать денег (подаётся число, которое прибавляется к текущему значению денег).
+# Купить дом (подаётся стоимость дома и необязательный аргумент «Скидка»).
+# Вывести соответствующее сообщение об успешной/неуспешной покупке дома.
+# Создайте как минимум один экземпляр класса и проверьте работу методов.
+#
+#
+#
+# Пример работы программы (вывод информации, покупка дома, заработок, очередная покупка):
+#
+#
+#
+# Family name: Common family
+#
+# Family funds: 100000
+#
+# Having a house: False
+#
+#
+#
+# Try to buy a house
+#
+# Not enough money!
+#
+#
+#
+# Earned 800000 money! Current value: 900000
+#
+# Try to buy a house again
+#
+# House purchased! Current money: 0.0
+#
+#
+#
+# Family name: Common family
+#
+# Family funds: 0.0
+#
+# Having a house: True
+class Family:
+    name = ""
+    money = 0
+    house = False
+
+    def print_info(self):
+        print("Family name: " + self.name, "Family funds: " + str(self.money), "Having a house: " + str(self.house), sep='\n')
+
+    def get_money(self, count):
+        self.money += count
+        print(f"Earned {count} money! Current value: {self.money}")
+
+    def buy_a_house(self, price, discount=0):
+        house_price = (price - price * (discount / 100))
+        if self.money >= house_price:
+            self.money -= house_price
+            print(f"House purchased! Current money: {self.money}")
+            self.house = True
+        else:
+            print("Not enough money!")
+
+
+human = Family()
+human.name = "Common family"
+human.money = 100000
+
+human.print_info()
+house_price = 900000
+human.buy_a_house(house_price)
+human.get_money(house_price - human.money)
+human.buy_a_house(house_price)
+human.print_info()
