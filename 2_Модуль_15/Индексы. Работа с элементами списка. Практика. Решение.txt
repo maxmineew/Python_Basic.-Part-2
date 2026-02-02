@@ -1,0 +1,174 @@
+# Задача 1. Гугл
+#
+# Программисты постоянно гуглят ошибки и ищут уже готовый код, который можно использовать для своей программы,
+# чтобы не изобретать велосипед. Андрей поступил также и нашёл для своего проекта код,
+# который должен находить минимальное и максимальное числа в списке. Вот этот код:
+#
+# nums_list = []
+#
+# N = int(input('Кол-во чисел в списке: '))
+#
+# for _ in range(N):
+#
+#  num = int(input('Очередное число: '))
+#
+#  nums_list.append(num)
+#
+#
+#
+# maximum = 0
+#
+# minimum = -1
+#
+# for i in nums_list:
+#
+#  if maximum < i:
+#
+#    maximum = i
+#
+#  if minimum > i:
+#
+#    minimum = i
+#
+#
+#
+# print('Максимальное число в списке:', maximum)
+#
+# print('Минимальное число в списке:', minimum)
+#
+#
+#
+# Однако он столкнулся с проблемой. Если брать, к примеру, количество чисел 5,
+# то на тестах -1 -2 -3 -4 -5 и 1 2 3 4 5 программа выводит неверный результат.
+#
+# Доработайте программу так, чтобы она выводила верный результат. Подсказка: для отладки используйте точки останова.
+#
+#
+#
+
+nums_list = []
+
+N = int(input('Кол-во чисел в списке: '))
+
+for _ in range(N):
+    num = int(input('Очередное число: '))
+    nums_list.append(num)
+
+if nums_list:
+    maximum = nums_list[0]
+    minimum = nums_list[0]
+
+    for i in nums_list:
+
+        if maximum < i:
+            maximum = i
+
+        if minimum > i:
+            minimum = i
+
+    print('Максимальное число в списке:', maximum)
+    print('Минимальное число в списке:', minimum)
+else:
+    print('В списке нету чисел')
+#
+
+# Задача 2. Кратность
+#
+# Пользователь вводит список из N чисел и число K. Напишите код, выводящий на экран сумму индексов элементов списка, которые кратны K.
+#
+#
+#
+# Пример:
+#
+# Кол-во чисел в списке: 4
+#
+# Введите 1 число: 1
+#
+# Введите 2 число: 20
+#
+# Введите 3 число: 30
+#
+# Введите 4 число: 4
+#
+#
+#
+# Введите делитель: 10
+#
+#
+#
+# Индекс числа 20: 1
+#
+# Индекс числа 30: 2
+#
+# Сумма индексов: 3
+#
+#
+#
+nums_list = []
+
+N = int(input('Кол-во чисел в списке: '))
+
+for i in range(1, N + 1):
+    print("Введите ", i, "число: ")
+    num = int(input())
+    nums_list.append(num)
+
+divider = int(input('Введите делитель: '))
+index = 0
+sum_indexes = 0
+for number in nums_list:
+    if number % divider == 0:
+        print("Индекс числа", number, ":", index)
+        sum_indexes += index
+    index += 1
+
+print("Сумма индексов:", sum_indexes)
+
+# Вариант с новыми инструментами (enumerate и f-strings)
+
+sum_indexes = 0
+for index, number in enumerate(nums_list):  # enumerate в таких случаях очень полезен
+    if number % divider == 0:
+        print(f"Индекс числа {number}: {index}")
+        sum_indexes += index
+
+# Задача 3. Собачьи бега
+#
+# В собачьих бегах участвует N собак, у каждой из них есть определённое количество очков за сезон.
+# На огромном табло выводятся очки каждой собаки. Однако при выводе был обнаружен баг:
+# собаки с наибольшим и наименьшим количеством очков поменялись местами! Нужно это исправить.
+#
+# Дан список очков из N собак. Напишите программу, которая меняет местами наибольший и наименьший элементы в списке.
+
+nums_list = []
+
+N = int(input('Кол-во чисел в списке: '))
+
+for _ in range(N):
+    num = int(input('Очередное число: '))
+    nums_list.append(num)
+
+if nums_list:
+    maximum = nums_list[0]
+    minimum = nums_list[0]
+
+    minimum_index = 0
+    maximum_index = 0
+    for index, i in enumerate(nums_list):
+
+        if maximum < i:
+            maximum = i
+            maximum_index = index
+
+        if minimum > i:
+            minimum = i
+            minimum_index = index
+
+    print('Максимальное число в списке:', maximum)
+    print('Минимальное число в списке:', minimum)
+
+    print(nums_list)
+    nums_list[minimum_index], nums_list[maximum_index] = nums_list[maximum_index], nums_list[minimum_index]
+    print(nums_list)
+else:
+    print('В списке нету чисел')
