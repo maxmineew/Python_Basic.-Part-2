@@ -1,0 +1,49 @@
+class Point:
+    # Счётчик точек - атрибут класса (общий для всех объектов)
+    points_counter = 0 # Счётчик ВСЕХ созданных точек
+
+    def __init__(self, x = 0, y = 0):
+        # АТРИБУТЫ ЭКЗЕМПЛЯРА - уникальны для каждого объекта
+        self.x = x  # Координата X этой конкретной точки
+        self.y = y  # Координата Y этой конкретной точки
+        # Увеличиваем счётчик при создании каждой новой точки
+        Point.points_counter += 1
+        self.id = Point.points_counter  # Улучшение: уникальный ID для каждой точки
+
+    def point_info(self):
+        print(f'Point: #{self.id}:, {self.x}, {self.y}')
+
+    def distance_to (self, other_point):
+    # Расстояние до другой точки
+        import math
+    # Математическая основа (теорема Пифагора):расстояние = √[(x₂ - x₁)² + (y₂ - y₁)²]
+        return math.sqrt((self.x - other_point.x)**2 + (self.y - other_point.y)**2)
+
+    def change_point(self, new_x, new_y):
+        self.x, self.y = new_x, new_y
+
+    # Классовый метод для получения счётчика
+    @classmethod
+    def get_points_count(cls): # Через параметр cls в classmethod
+        return cls.points_counter # cls - это ссылка на класс, не на объект!
+    @classmethod
+    def reset_counter(cls): # сбросить счетчик
+        cls.points_counter = 0
+
+print(f'Создано точек: {Point.points_counter}')
+
+my_point = Point()
+my_point.point_info()
+print(f'Создано точек: {Point.points_counter}')
+
+my_point = Point(3, 5)
+my_point.point_info()
+print(f'Создано точек: {Point.get_points_count()}')
+
+my_point = Point(10, -6)
+my_point.point_info()
+print(f'Создано точек: {Point.get_points_count()}')
+
+my_point = Point(7)
+my_point.point_info()
+print(f'Создано точек: {Point.get_points_count()}')
